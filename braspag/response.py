@@ -57,10 +57,11 @@ def to_unicode(value):
 
 
 def to_date(value):
-    if isinstance(value, str):
+    try:
+        return datetime.strptime(value, '%m/%d/%Y %H:%M:%S %p')
+    except:
         value = '%s 00:00:00 AM' % value
-        return datetime.strptime(value, '%m/%d/%Y %H:%M:%S')
-    return datetime.strptime(value, '%m/%d/%Y %H:%M:%S %p')
+        return datetime.strptime(value, '%m/%d/%Y %H:%M:%S %p')
 
 
 def to_int(value):
